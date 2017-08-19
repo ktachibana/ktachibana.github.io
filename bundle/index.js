@@ -117,7 +117,7 @@
 	  startMicLevelDetection: function startMicLevelDetection(source, callback) {
 	    var analyser = source.context.createAnalyser();
 	    analyser.fftSize = 32;
-	    analyser.smoothingTimeConstant = 0.3;
+	    analyser.smoothingTimeConstant = 0;
 	    source.connect(analyser);
 	
 	    var buf = new Uint8Array(16);

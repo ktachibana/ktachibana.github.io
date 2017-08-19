@@ -25,7 +25,7 @@ module.exports = {
   startMicLevelDetection: function(source, callback) {
     const analyser = source.context.createAnalyser();
     analyser.fftSize = 32;
-    analyser.smoothingTimeConstant = 0.3;
+    analyser.smoothingTimeConstant = 0;
     source.connect(analyser);
 
     const buf = new Uint8Array(16);
