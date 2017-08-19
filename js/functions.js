@@ -3,7 +3,6 @@ import './vendors';
 module.exports = {
   openMic: function() {
     return new Promise((resolve, reject) => {
-      reject(new Error('foo'))
       if (!navigator.getUserMedia) {
         reject(new Error("WebRTC(getUserMedia) is not supported."));
         return;
@@ -13,7 +12,7 @@ module.exports = {
         video: false,
         audio: true
       }, (stream) => {
-        console.log('getUserMedia: ', stream);
+        log('getUserMedia: ', stream);
         const audioContext = new AudioContext();
         const input = audioContext.createMediaStreamSource(stream);
         resolve(input);
