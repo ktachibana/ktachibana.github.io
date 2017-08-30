@@ -25,10 +25,10 @@ module.exports = {
   startMicLevelDetection: function(source, callback) {
     const analyser = source.context.createAnalyser();
     analyser.fftSize = 32;
-    analyser.smoothingTimeConstant = 0;
+    analyser.smoothingTimeConstant = 0.3;
     source.connect(analyser);
 
-    const buf = new Uint8Array(16);
+    const buf = new Uint8Array(256);
     const onTimer = () => {
       analyser.getByteFrequencyData(buf);
 

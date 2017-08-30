@@ -11,10 +11,12 @@ window.onerror = function (msg, url, line) {
   $('#console').prepend(`<pre style="color: red;">ERROR: ${msg} ${url} ${line}</pre>`);
 }
 
-f.openMic().then((input) => {
-  log("openMic input:", input);
-  global.detectionTimer = f.startMicLevelDetection(input, (micLevel) => {
-    log(`micLevel: ${micLevel}`);
+$('#start').click(() => {
+  f.openMic().then((input) => {
+    log("openMic input:", input);
+    global.detectionTimer = f.startMicLevelDetection(input, (micLevel) => {
+      log(`micLevel: ${micLevel}`);
+    });
   });
 });
 

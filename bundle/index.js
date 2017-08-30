@@ -70,10 +70,12 @@
 	  (0, _jquery2.default)('#console').prepend('<pre style="color: red;">ERROR: ' + msg + ' ' + url + ' ' + line + '</pre>');
 	};
 	
-	_functions2.default.openMic().then(function (input) {
-	  log("openMic input:", input);
-	  global.detectionTimer = _functions2.default.startMicLevelDetection(input, function (micLevel) {
-	    log('micLevel: ' + micLevel);
+	(0, _jquery2.default)('#start').click(function () {
+	  _functions2.default.openMic().then(function (input) {
+	    log("openMic input:", input);
+	    global.detectionTimer = _functions2.default.startMicLevelDetection(input, function (micLevel) {
+	      log('micLevel: ' + micLevel);
+	    });
 	  });
 	});
 	
@@ -117,10 +119,10 @@
 	  startMicLevelDetection: function startMicLevelDetection(source, callback) {
 	    var analyser = source.context.createAnalyser();
 	    analyser.fftSize = 32;
-	    analyser.smoothingTimeConstant = 0;
+	    analyser.smoothingTimeConstant = 0.3;
 	    source.connect(analyser);
 	
-	    var buf = new Uint8Array(16);
+	    var buf = new Uint8Array(256);
 	    var onTimer = function onTimer() {
 	      analyser.getByteFrequencyData(buf);
 	
