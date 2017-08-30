@@ -121,6 +121,7 @@
 	    analyser.fftSize = 32;
 	    analyser.smoothingTimeConstant = 0.3;
 	    source.connect(analyser);
+	    analyser.connect(source.context.destination);
 	
 	    var buf = new Uint8Array(256);
 	    var onTimer = function onTimer() {

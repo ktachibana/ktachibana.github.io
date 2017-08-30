@@ -27,6 +27,7 @@ module.exports = {
     analyser.fftSize = 32;
     analyser.smoothingTimeConstant = 0.3;
     source.connect(analyser);
+    analyser.connect(source.context.destination);
 
     const buf = new Uint8Array(256);
     const onTimer = () => {
