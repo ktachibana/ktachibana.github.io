@@ -74,7 +74,7 @@
 	  _functions2.default.openMic().then(function (input) {
 	    log("openMic input:", input);
 	    global.detectionTimer = _functions2.default.startMicLevelDetection(input, function (micLevel) {
-	      log('micLevel: ' + micLevel);
+	      (0, _jquery2.default)('#mic').text(micLevel);
 	    });
 	  });
 	});

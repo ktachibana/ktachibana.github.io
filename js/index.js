@@ -15,7 +15,7 @@ $('#start').click(() => {
   f.openMic().then((input) => {
     log("openMic input:", input);
     global.detectionTimer = f.startMicLevelDetection(input, (micLevel) => {
-      log(`micLevel: ${micLevel}`);
+      $('#mic').text(micLevel);
     });
   });
 });
