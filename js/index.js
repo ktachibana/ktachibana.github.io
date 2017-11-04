@@ -12,9 +12,11 @@ window.onerror = function (msg, url, line) {
 }
 
 $('#start').click(() => {
-  f.openMic().then((input) => {
-    log("openMic input:", input);
-    global.detectionTimer = f.startMicLevelDetection(input, (micLevel) => {
+  global.audioContext = new AudioContext();
+
+  f.openMic().then((source) => {
+    log("openMic source:", source);
+    global.detectionTimer = f.startMicLevelDetection(source, (micLevel) => {
       $('#mic').text(micLevel);
     });
   });

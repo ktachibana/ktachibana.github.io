@@ -71,9 +71,11 @@
 	};
 	
 	(0, _jquery2.default)('#start').click(function () {
-	  _functions2.default.openMic().then(function (input) {
-	    log("openMic input:", input);
-	    global.detectionTimer = _functions2.default.startMicLevelDetection(input, function (micLevel) {
+	  global.audioContext = new AudioContext();
+	
+	  _functions2.default.openMic().then(function (source) {
+	    log("openMic source:", source);
+	    global.detectionTimer = _functions2.default.startMicLevelDetection(source, function (micLevel) {
 	      (0, _jquery2.default)('#mic').text(micLevel);
 	    });
 	  });
@@ -90,7 +92,7 @@
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	'use strict';
+	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 	
 	__webpack_require__(2);
 	
@@ -107,9 +109,8 @@
 	        audio: true
 	      }, function (stream) {
 	        log('getUserMedia: ', stream);
-	        var audioContext = new AudioContext();
-	        var input = audioContext.createMediaStreamSource(stream);
-	        resolve(input);
+	        var source = global.audioContext.createMediaStreamSource(stream);
+	        resolve(source);
 	      }, function (e) {
 	        reject(e);
 	      });
@@ -121,7 +122,6 @@
 	    analyser.fftSize = 32;
 	    analyser.smoothingTimeConstant = 0.3;
 	    source.connect(analyser);
-	    analyser.connect(source.context.destination);
 	
 	    var buf = new Uint8Array(256);
 	    var onTimer = function onTimer() {
@@ -173,6 +173,7 @@
 	    };
 	  }
 	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ }),
 /* 2 */

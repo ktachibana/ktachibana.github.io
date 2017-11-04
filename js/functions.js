@@ -13,9 +13,8 @@ module.exports = {
         audio: true
       }, (stream) => {
         log('getUserMedia: ', stream);
-        const audioContext = new AudioContext();
-        const input = audioContext.createMediaStreamSource(stream);
-        resolve(input);
+        const source = global.audioContext.createMediaStreamSource(stream);
+        resolve(source);
       }, (e) => {
         reject(e);
       });
@@ -27,7 +26,6 @@ module.exports = {
     analyser.fftSize = 32;
     analyser.smoothingTimeConstant = 0.3;
     source.connect(analyser);
-    analyser.connect(source.context.destination);
 
     const buf = new Uint8Array(256);
     const onTimer = () => {
