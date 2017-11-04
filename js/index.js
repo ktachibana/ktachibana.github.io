@@ -11,7 +11,7 @@ window.onerror = function (msg, url, line) {
   $('#console').prepend(`<pre style="color: red;">ERROR: ${msg} ${url} ${line}</pre>`);
 }
 
-$('#start').click(() => {
+document.querySelector('#start').onclick = () => {
   global.audioContext = new AudioContext();
 
   f.openMic().then((source) => {
@@ -20,7 +20,7 @@ $('#start').click(() => {
       $('#mic').text(micLevel);
     });
   });
-});
+};
 
 $('#stop').click(() => {
   if (global.detectionTimer) {

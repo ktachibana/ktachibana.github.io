@@ -70,7 +70,7 @@
 	  (0, _jquery2.default)('#console').prepend('<pre style="color: red;">ERROR: ' + msg + ' ' + url + ' ' + line + '</pre>');
 	};
 	
-	(0, _jquery2.default)('#start').click(function () {
+	document.querySelector('#start').onclick = function () {
 	  global.audioContext = new AudioContext();
 	
 	  _functions2.default.openMic().then(function (source) {
@@ -79,7 +79,7 @@
 	      (0, _jquery2.default)('#mic').text(micLevel);
 	    });
 	  });
-	});
+	};
 	
 	(0, _jquery2.default)('#stop').click(function () {
 	  if (global.detectionTimer) {
